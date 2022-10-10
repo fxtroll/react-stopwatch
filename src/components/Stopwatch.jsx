@@ -9,13 +9,31 @@ export default function Stopwatch() {
 
   let btnRef = useRef()
 
+  const start = () => {
+    timeOut.current = setInterval(() => {
+      setDisplay(display => ++display)
+    }, 1000)
+    setRunning(true)
+  }
+
+  const reset = () => {
+    setRunning(false)
+    setDisplay(0)
+    window.clearInterval(timeOut.current)
+  }
+
+  const pause = () => {
+    setRunning(false)
+    window.clearInterval(timeOut.current)
+  }
+
   return (
     <div className="stopwatch">
       <h1>{display}</h1>
       <div className="controls">
-        <button></button>
-        <button></button>
-        <button></button>
+        <button onClick={reset}>Reset</button>
+        <button disabled={running === true} onClick={start}>start</button>
+        <button onClick={pause}>Pause</button>
       </div>
     </div>
   )

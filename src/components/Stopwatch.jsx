@@ -1,5 +1,6 @@
 import { useRef, useState } from "react"
 import React from 'react'
+import './Stopwatch.css'
 
 export default function Stopwatch() {
 
